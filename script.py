@@ -3,16 +3,12 @@ import mathutils
 
 DIST_DIR = "./dist/"
 
-# print(dir(bpy))
-
 def save_file(name):
 	bpy.ops.wm.save_as_mainfile(filepath=DIST_DIR+name)
 
-cube = bpy.data.objects["Cube"]
-vec = mathutils.Vector((1.0, 5.0, 0.0))
-inv = cube.matrix_world.copy()
-inv.invert()
-vec_rot = vec * inv
-cube.location = cube.location + vec_rot
+# Remove cube from the scene
+bpy.ops.object.select_all(action='SELECT')
+bpy.data.objects['Cube'].select = True
+bpy.ops.object.delete()
 
 save_file('test.blend')
