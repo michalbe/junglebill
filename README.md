@@ -1,1 +1,1 @@
-# shape-merge
+# blender-python-cli-boilerplate
