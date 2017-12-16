@@ -1,5 +1,5 @@
-all:
-	blender -b --python script.py 
+all: clean
+	blender -b --python script.py
 
 clean:
 	rm -rf dist/*.*
