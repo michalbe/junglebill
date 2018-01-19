@@ -22,5 +22,11 @@ class junglebill:
 		object.select = True
 		self.bpy.context.scene.objects.active = object
 
+	def edit_mode(self):
+		self.bpy.ops.object.mode_set(mode='EDIT')
+
+	def object_mode(self):
+		self.bpy.ops.object.mode_set(mode='OBJECT')
+
 	def save(self, path):
 		self.bpy.ops.wm.save_as_mainfile(filepath=path)
