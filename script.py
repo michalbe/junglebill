@@ -43,5 +43,10 @@ class junglebill:
 			)
 		self.object_mode()
 
+	def apply_modifiers(self, object):
+		self.set_active(object)
+		for modifier in object.modifiers:
+			self.bpy.ops.object.modifier_apply(modifier=modifier.name)
+
 	def save(self, path):
 		self.bpy.ops.wm.save_as_mainfile(filepath=path)
