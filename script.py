@@ -19,6 +19,7 @@ class junglebill:
 		self.bpy.context.scene.objects.link(object)
 
 	def set_active(self, object):
+		object.select = True
 		self.bpy.context.scene.objects.active = object
 
 	def save(self, path):
