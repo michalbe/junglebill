@@ -31,5 +31,17 @@ class junglebill:
 	def select_all(self):
 		self.bpy.ops.mesh.select_all(action='SELECT')
 
+	def mirror(self, object, axis):
+		self.set_active(object)
+		self.edit_mode()
+		self.select_all()
+		bpy.ops.transform.mirror(
+			'EXEC_DEFAULT',
+			constraint_axis=axis,
+			constraint_orientation='GLOBAL',
+			proportional='DISABLED'
+			)
+		self.object_mode()
+
 	def save(self, path):
 		self.bpy.ops.wm.save_as_mainfile(filepath=path)
