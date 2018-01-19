@@ -28,5 +28,8 @@ class junglebill:
 	def object_mode(self):
 		self.bpy.ops.object.mode_set(mode='OBJECT')
 
+	def select_all(self):
+		self.bpy.ops.mesh.select_all(action='SELECT')
+
 	def save(self, path):
 		self.bpy.ops.wm.save_as_mainfile(filepath=path)
