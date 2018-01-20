@@ -31,6 +31,11 @@ class junglebill:
 		self.bpy.ops.object.mode_set(mode='OBJECT')
 		self.mode = 'OBJECT'
 
+	def join(self, main_item):
+		self.select_all()
+		self.set_active(main_item)
+		self.bpy.ops.object.join()
+
 	def select_all(self):
 		if self.mode == 'OBJECT':
 			for item in bpy.data.objects:
