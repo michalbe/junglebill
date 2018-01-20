@@ -16,6 +16,12 @@ class junglebill:
 			data_to.objects = [name for name in data_from.objects if name.startswith(object_name)]
 		return data_to.objects[0]
 
+	def copy(self, item):
+		new_item = item.copy()
+		new_item.data = item.data.copy()
+		new_item.animation_data_clear()
+		return new_item
+
 	def add_object(self, item):
 		self.bpy.context.scene.objects.link(item)
 
