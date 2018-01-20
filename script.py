@@ -1,14 +1,14 @@
 import bpy
 import mathutils
 
-DIST_DIR = "./dist/"
+class junglebill:
+	def __init__(self):
+		self.bpy = bpy
 
-def save_file(name):
-	bpy.ops.wm.save_as_mainfile(filepath=DIST_DIR+name)
+		# Remove default cube from the scene
+		self.bpy.ops.object.select_all(action='SELECT')
+		self.bpy.data.objects['Cube'].select = True
+		self.bpy.ops.object.delete()
 
-# Remove cube from the scene
-bpy.ops.object.select_all(action='SELECT')
-bpy.data.objects['Cube'].select = True
-bpy.ops.object.delete()
-
-save_file('test.blend')
+	def save(self, path):
+		self.bpy.ops.wm.save_as_mainfile(filepath=path)
