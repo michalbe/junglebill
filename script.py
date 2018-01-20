@@ -18,5 +18,8 @@ class junglebill:
 	def add_object(self, object):
 		self.bpy.context.scene.objects.link(object)
 
+	def set_active(self, object):
+		self.bpy.context.scene.objects.active = object
+
 	def save(self, path):
 		self.bpy.ops.wm.save_as_mainfile(filepath=path)
