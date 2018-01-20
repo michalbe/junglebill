@@ -15,5 +15,8 @@ class junglebill:
 			data_to.objects = [name for name in data_from.objects if name.startswith(object_name)]
 		return data_to.objects[0]
 
+	def add_object(self, object):
+		self.bpy.context.scene.objects.link(object)
+
 	def save(self, path):
 		self.bpy.ops.wm.save_as_mainfile(filepath=path)
