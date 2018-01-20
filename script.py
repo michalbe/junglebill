@@ -4,6 +4,7 @@ import mathutils
 class junglebill:
 	def __init__(self):
 		self.bpy = bpy
+		self.mode = 'OBJECT'
 
 		# Remove default cube from the scene
 		self.bpy.ops.object.select_all(action='SELECT')
@@ -15,24 +16,30 @@ class junglebill:
 			data_to.objects = [name for name in data_from.objects if name.startswith(object_name)]
 		return data_to.objects[0]
 
-	def add_object(self, object):
-		self.bpy.context.scene.objects.link(object)
+	def add_object(self, item):
+		self.bpy.context.scene.objects.link(item)
 
-	def set_active(self, object):
-		object.select = True
-		self.bpy.context.scene.objects.active = object
+	def set_active(self, item):
+		item.select = True
+		self.bpy.context.scene.objects.active = item
 
 	def edit_mode(self):
 		self.bpy.ops.object.mode_set(mode='EDIT')
+		self.mode = 'EDIT'
 
 	def object_mode(self):
 		self.bpy.ops.object.mode_set(mode='OBJECT')
+		self.mode = 'OBJECT'
 
 	def select_all(self):
-		self.bpy.ops.mesh.select_all(action='SELECT')
+		if self.mode == 'OBJECT':
+			for item in bpy.data.objects:
+				item.select = True
+		else:
+			self.bpy.ops.mesh.select_all(action='SELECT')
 
-	def mirror(self, object, axis):
-		self.set_active(object)
+	def mirror(self, item, axis):
+		self.set_active(item)
 		self.edit_mode()
 		self.select_all()
 		bpy.ops.transform.mirror(
@@ -43,9 +50,9 @@ class junglebill:
 			)
 		self.object_mode()
 
-	def apply_modifiers(self, object):
-		self.set_active(object)
-		for modifier in object.modifiers:
+	def apply_modifiers(self, item):
+		self.set_active(item)
+		for modifier in item.modifiers:
 			self.bpy.ops.object.modifier_apply(modifier=modifier.name)
 
 	def save(self, path):
