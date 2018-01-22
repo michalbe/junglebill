@@ -1,4 +1,4 @@
-# blender-python-cli-boilerplate
+# Junglebill
 
 Make sure `blender` is in your path. Tested with `Blender 2.78`
 
